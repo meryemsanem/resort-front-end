@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Reservations() {
+export default function Logout() {
   return (
     <div>
       <h1>Logout</h1>
