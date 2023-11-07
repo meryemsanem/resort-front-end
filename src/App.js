@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux'; // Import the Provider
-import store from './components/store/configureStore'; // Import your Redux store
+import { Provider } from 'react-redux';
+import store from './components/redux/store';
 import { NavProvider } from './components/Navigation/Nav';
 import Navigation from './components/Navigation/Navigation';
 import Resorts from './components/Resort/Resorts';
@@ -22,12 +22,12 @@ function App() {
               <Navigation />
               <div className="contents">
                 <Routes>
-                  <Route path="/resorts" element={<Resorts />} />
+                  <Route exact path="/" element={<Resorts />} />
                   <Route path="/reservations" element={<Reservations />} />
                   <Route path="/reserve" element={<Reserve />} />
                   <Route path="/add_resort" element={<AddResort />} />
                   <Route path="/delete_resort" element={<DeleteResort />} />
-                  <Route exact path="/logout" element={<Logout />} />
+                  <Route path="/logout" element={<Logout />} />
                 </Routes>
               </div>
             </div>
