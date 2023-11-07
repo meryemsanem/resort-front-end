@@ -35,9 +35,6 @@ const Navigation = () => {
             <h2>Logo Soon</h2>
           </div>
           <div className="links">
-            <NavLink to="/" onClick={handleToggle}>
-              HomePage
-            </NavLink>
             <NavLink to="/resorts" onClick={handleToggle}>
               Resorts
             </NavLink>
@@ -52,6 +49,9 @@ const Navigation = () => {
             </NavLink>
             <NavLink to="/delete_resort" onClick={handleToggle}>
               Delete Resort
+            </NavLink>
+            <NavLink to="/logout" onClick={handleToggle}>
+              Logout
             </NavLink>
           </div>
           <div className="footer">

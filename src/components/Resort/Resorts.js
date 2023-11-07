@@ -1,9 +1,16 @@
 import React from 'react';
+import './Resort.css';
 
-export default function Resorts() {
-  return (
-    <div>
-      <h1>Resorts</h1>
+const Home = () => (
+  <div>
+    <div className="header">
+      <h1 className="title">LATEST RESORTS</h1>
+      <p className="title-info">Please choose your favorite Resort</p>
     </div>
-  );
-}
+    <br />
+    <br />
+    {}
+  </div>
+);
+
+export default Home;
