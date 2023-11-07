@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux'; // Import the Provider
+import store from './components/redux/store'; // Import your Redux store
 import { NavProvider } from './components/Navigation/Nav';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './components/Resort/HomePage';
@@ -11,26 +13,27 @@ import DeleteResort from './components/Resort/DeleteResort';
 
 function App() {
   return (
-    <NavProvider>
-      <Router>
-        {' '}
-        <div className="container">
-          <div className="app-container">
-            <Navigation />
-            <div className="contents">
-              <Routes>
-                <Route exact path="/" element={<HomePage />} />
-                <Route path="/resorts" element={<Resorts />} />
-                <Route path="/reservations" element={<Reservations />} />
-                <Route path="/reserve" element={<Reserve />} />
-                <Route path="/add_resort" element={<AddResort />} />
-                <Route path="/delete_resort" element={<DeleteResort />} />
-              </Routes>
+    <Provider store={store}>
+      <NavProvider>
+        <Router>
+          <div className="container">
+            <div className="app-container">
+              <Navigation />
+              <div className="contents">
+                <Routes>
+                  <Route exact path="/" element={<HomePage />} />
+                  <Route path="/resorts" element={<Resorts />} />
+                  <Route path="/reservations" element={<Reservations />} />
+                  <Route path="/reserve" element={<Reserve />} />
+                  <Route path="/add_resort" element={<AddResort />} />
+                  <Route path="/delete_resort" element={<DeleteResort />} />
+                </Routes>
+              </div>
             </div>
           </div>
-        </div>
-      </Router>
-    </NavProvider>
+        </Router>
+      </NavProvider>
+    </Provider>
   );
 }
 
