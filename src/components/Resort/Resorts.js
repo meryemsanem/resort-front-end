@@ -1,7 +1,7 @@
 import React from 'react';
-import './Resort.css';
+import './Resorts.css';
 
-const Home = () => (
+const Resort = () => (
   <div>
     <div className="header">
       <h1 className="title">LATEST RESORTS</h1>
@@ -13,4 +13,4 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export default Resort;
