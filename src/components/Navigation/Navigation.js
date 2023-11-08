@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import {
-  FaPause,
   FaTwitter,
   FaFacebookF,
   FaGooglePlus,
@@ -10,48 +9,84 @@ import {
   FaVimeoV,
   FaCopyright,
 } from 'react-icons/fa';
-import { Nav } from './Nav';
 import './Navigation.css';
 
 const Navigation = () => {
-  const { isOpen, toggleNavigation } = useContext(Nav);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
-    toggleNavigation();
+    setIsOpen(!isOpen);
   };
+
+  const handleClick = () => {
+    if (window.innerWidth <= 768) {
+      setIsOpen(false);
+    }
+  };
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) {
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className={`nav-menu ${isOpen ? 'open-menu' : 'close-menu'}`}>
       <button type="button" onClick={handleToggle} className="hamburger-icon">
-        {isOpen ? (
-          <FiX className="close" />
-        ) : (
-          <FaPause className="rotate-icon" />
-        )}
+        {isOpen ? <FiX className="close" /> : <FiMenu className="open" />}
       </button>
       {isOpen && (
         <div className="menu-links">
           <div className="logo-container">
-            <h2>Logo Soon</h2>
+            <h2 className="app-name">Resort Vista</h2>
           </div>
           <div className="links">
-            <NavLink to="/" onClick={handleToggle}>
-              HomePage
-            </NavLink>
-            <NavLink to="/resorts" onClick={handleToggle}>
+            <NavLink to="/" onClick={handleClick} activeClassName="active">
               Resorts
             </NavLink>
-            <NavLink to="/reserve" onClick={handleToggle}>
+            <NavLink
+              to="/reserve"
+              onClick={handleClick}
+              activeClassName="active"
+            >
               Reserve
             </NavLink>
-            <NavLink to="/reservations" onClick={handleToggle}>
+            <NavLink
+              to="/reservations"
+              onClick={handleClick}
+              activeClassName="active"
+            >
               My Reservations
             </NavLink>
-            <NavLink to="/add_resort" onClick={handleToggle}>
+            <NavLink
+              to="/add_resort"
+              onClick={handleClick}
+              activeClassName="active"
+            >
               Add Resort
             </NavLink>
-            <NavLink to="/delete_resort" onClick={handleToggle}>
+            <NavLink
+              to="/delete_resort"
+              onClick={handleClick}
+              activeClassName="active"
+            >
               Delete Resort
+            </NavLink>
+            <NavLink
+              to="/logout"
+              onClick={handleClick}
+              activeClassName="active"
+            >
+              Log out
             </NavLink>
           </div>
           <div className="footer">
