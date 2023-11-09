@@ -1,5 +1,7 @@
 import React from 'react';
 import './Resorts.css';
+import Packages from '../homepage/Packages';
+
 
 const Resort = () => (
   <div>
@@ -9,7 +11,7 @@ const Resort = () => (
     </div>
     <br />
     <br />
-    {}
+    <Packages />
   </div>
 );
 

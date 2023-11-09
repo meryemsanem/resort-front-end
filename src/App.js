@@ -10,8 +10,7 @@ import Logout from './components/Resort/Logout';
 import Reserve from './components/Resort/Reserve';
 import AddResort from './components/Resort/AddResort';
 import DeleteResort from './components/Resort/DeleteResort';
-import './App.css';
-
+import './App.css'
 function App() {
   return (
     <Provider store={store}>
