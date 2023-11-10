@@ -79,7 +79,17 @@ const Destinations = () => {
                     <h2>{destination.city_name}</h2>
                     <h3>{destination.name}</h3>
                     <p>{destination.description}</p>
-                    <button type="button">Learn More</button>
+                    <div className="social-group">
+                      <span className="social-icon">
+                        <i className="fa fa-twitter" />
+                      </span>
+                      <span className="social-icon">
+                        <i className="fa fa-linkedin" />
+                      </span>
+                      <span className="social-icon">
+                        <i className="fa fa-github" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>
