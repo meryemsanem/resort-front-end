@@ -76,8 +76,8 @@ const Destinations = () => {
                 >
                   <img src={destination.image_url} alt={destination.name} />
                   <div className="card-bottom">
-                    <h2>{destination.city_name}</h2>
                     <h3>{destination.name}</h3>
+                    <hr width="55%" />
                     <p>{destination.description}</p>
                     <div className="social-group">
                       <span className="social-icon">
