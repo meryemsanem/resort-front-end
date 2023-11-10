@@ -1,87 +1,58 @@
-.carouselContainer {
-    margin-top: 10rem;
-    width: 75%;
-    height: 50vh;
-    margin-left: 5rem;
-  }
-  
-  .carouselContainer h1 {
-    font-size: 3rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-  }
-  
-  .carouselTitle {
-    text-align: center;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5rem;
-    text-align: center;
-  }
-  
-  .cardTop > img {
-    width: 20rem;
-    height: 20rem;
-    border-radius: 50%;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
-    object-fit: cover;
-  }
-  
-  .cardTop > h2 {
-    font-size: 1.5rem;
-    color: #6e9e01;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-bottom: 1px solid var(--grey-border);
-  }
-  
-  .cardBottom {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-  }
-  
-  .cardBottom > h3 {
-    font-size: 1.5rem !important;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-bottom: 1px solid var(--grey-border);
-  }
-  
-  .cardBottom > p {
-    font-size: 1.2rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-  }
-  
-  .cardBottom > button {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border: 2px solid #6e9e01;
-    background-color: #6e9e01;
-    color: #fff;
-    border-radius: 5px;
-  }
-  
+.page-container {
+  margin: 0 auto;
+  max-width: 80%;
+}
+.container-destination {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.page-title,
+.page-title1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.destination-card {
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.destination-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+img {
+  width: 100%;
+}
+.card-bottom {
+  padding: 10px;
+}
+.card-bottom h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.card-bottom p {
+  font-size: 16px;
+  color: #555;
+}
+.card-bottom button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.card-bottom button:hover {
+  background-color: #45A049;
+}
+.destination-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

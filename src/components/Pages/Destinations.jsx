@@ -1,54 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import 'react-multi-carousel/lib/styles.css';
-import styles from './Destinations.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+import './Destinations.css';
 
 const Destinations = () => {
   const [destinations, setDestinations] = useState([]);
   const navigate = useNavigate();
-  const {
-    card, cardTop, cardBottom, carouselContainer, carouselTitle,
-  } = styles;
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
+
+  const swiperConfig = {
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
       },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 15,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 20,
       },
-    ],
+    },
   };
+
   const handleSpecificPage = (id) => {
     navigate(`/destinations/${id}`);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,43 +43,48 @@ const Destinations = () => {
         console.error('Error fetching data:', error);
       }
     };
+
     fetchData();
   }, []);
+
   return (
     <div className="page-container">
-      <div className={carouselContainer}>
-        <h1 className={carouselTitle}>LATEST SAFARIS</h1>
+      <div className="container-destination">
+        <h1 className="page-title">LATEST RESORTS</h1>
+        <p className="page-title1">Please choose your favorite Resort</p>
         {destinations && destinations.length > 0 ? (
-          <Slider
-            dots={settings.dots}
-            infinite={settings.infinite}
-            speed={settings.speed}
-            slidesToShow={settings.slidesToShow}
-            slidesToScroll={settings.slidesToScroll}
-            initialSlide={settings.initialSlide}
-            responsive={settings.responsive}
+          <Swiper
+            navigation
+            modules={[Navigation]}
+            className="mySwiper"
+            spaceBetween={swiperConfig.spaceBetween}
+            slidesPerView={swiperConfig.slidesPerView}
+            breakpoints={swiperConfig.breakpoints}
           >
             {destinations.map((destination) => (
-              <div key={destination.id}>
-                <div className={card}>
-                  <div className={cardTop}>
-                    <img src={destination.image_url} alt={destination.name} />
+              <SwiperSlide key={destination.id}>
+                <div
+                  className="destination-card"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleSpecificPage(destination.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSpecificPage(destination.id);
+                    }
+                  }}
+                >
+                  <img src={destination.image_url} alt={destination.name} />
+                  <div className="card-bottom">
                     <h2>{destination.city_name}</h2>
-                  </div>
-                  <div className={cardBottom}>
                     <h3>{destination.name}</h3>
                     <p>{destination.description}</p>
-                    <button
-                      type="button"
-                      onClick={() => handleSpecificPage(destination.id)}
-                    >
-                      Learn More
-                    </button>
+                    <button type="button">Learn More</button>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         ) : (
           <p>No destinations available.</p>
         )}
@@ -105,4 +92,5 @@ const Destinations = () => {
     </div>
   );
 };
+
 export default Destinations;
