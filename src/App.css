@@ -7,15 +7,11 @@
   pointer-events: none;
 }
 
-.contents {
+.app-splash {
   display: flex;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.app-container {
-  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 25%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

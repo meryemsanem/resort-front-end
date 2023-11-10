@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import {
   FaTwitter,
@@ -9,9 +10,12 @@ import {
   FaVimeoV,
   FaCopyright,
 } from 'react-icons/fa';
+import { logOut } from '../redux/AuthenticationSlice';
 import './Navigation.css';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -23,6 +27,7 @@ const Navigation = () => {
       setIsOpen(false);
     }
   };
+
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 768;
@@ -39,6 +44,13 @@ const Navigation = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    dispatch(logOut()).then(() => {
+      sessionStorage.clear();
+      navigate('/login');
+    });
+  };
+
   return (
     <div className={`nav-menu ${isOpen ? 'open-menu' : 'close-menu'}`}>
       <button type="button" onClick={handleToggle} className="hamburger-icon">
@@ -50,41 +62,45 @@ const Navigation = () => {
             <h2 className="app-name">Resort Vista</h2>
           </div>
           <div className="links">
-            <NavLink to="/" onClick={handleClick} activeClassName="active">
+            <NavLink
+              to="/resorts"
+              onClick={handleClick}
+              activeclassname="active"
+            >
               Resorts
             </NavLink>
             <NavLink
               to="/reserve"
               onClick={handleClick}
-              activeClassName="active"
+              activeclassname="active"
             >
               Reserve
             </NavLink>
             <NavLink
               to="/reservations"
               onClick={handleClick}
-              activeClassName="active"
+              activeclassname="active"
             >
               My Reservations
             </NavLink>
             <NavLink
               to="/add_resort"
               onClick={handleClick}
-              activeClassName="active"
+              activeclassname="active"
             >
               Add Resort
             </NavLink>
             <NavLink
               to="/delete_resort"
               onClick={handleClick}
-              activeClassName="active"
+              activeclassname="active"
             >
               Delete Resort
             </NavLink>
             <NavLink
               to="/logout"
-              onClick={handleClick}
-              activeClassName="active"
+              onClick={handleLogout}
+              activeclassname="active"
             >
               Log out
             </NavLink>
