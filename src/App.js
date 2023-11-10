@@ -1,41 +1,47 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './components/redux/store';
-import { NavProvider } from './components/Navigation/Nav';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import SplashScreen from './components/Resort/SplashScreen';
 import Navigation from './components/Navigation/Navigation';
 import Resorts from './components/Resort/Resorts';
-import Reservations from './components/Resort/Reservations';
-import Logout from './components/Resort/Logout';
 import Reserve from './components/Resort/Reserve';
 import AddResort from './components/Resort/AddResort';
 import DeleteResort from './components/Resort/DeleteResort';
-import './App.css';
+import Reservations from './components/Resort/Reservations';
+import Login from './components/auth/Login';
+import Signup from './components/auth/Signup';
+import Logout from './components/Resort/Logout';
+import { setIsAuthenticated } from './components/redux/AuthenticationSlice';
 
-function App() {
-  return (
-    <Provider store={store}>
-      <NavProvider>
-        <Router>
-          <div className="container">
-            <div className="app-container">
-              <Navigation />
-              <div className="contents">
-                <Routes>
-                  <Route exact path="/" element={<Resorts />} />
-                  <Route path="/reservations" element={<Reservations />} />
-                  <Route path="/reserve" element={<Reserve />} />
-                  <Route path="/add_resort" element={<AddResort />} />
-                  <Route path="/delete_resort" element={<DeleteResort />} />
-                  <Route path="/logout" element={<Logout />} />
-                </Routes>
-              </div>
-            </div>
-          </div>
-        </Router>
-      </NavProvider>
-    </Provider>
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const isAuthenticatedFromStorage = sessionStorage.getItem('isAuthenticated') === 'true';
+    dispatch(setIsAuthenticated(isAuthenticatedFromStorage));
+  }, [dispatch]);
+
+  const isAuthenticated = useSelector(
+    (state) => state.authentication.isAuthenticated,
   );
-}
+
+  return (
+    <div className="app-splash">
+      {isAuthenticated && <Navigation />}
+      <Routes>
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/resorts" element={<Resorts />} />
+        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/reserve" element={<Reserve />} />
+        <Route path="/add_resort" element={<AddResort />} />
+        <Route path="/delete_resort" element={<DeleteResort />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
+    </div>
+  );
+};
 
 export default App;
