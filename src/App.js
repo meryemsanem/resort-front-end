@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import SplashScreen from './components/Pages/SplashScreen';
 import Navigation from './components/Navigation/Navigation';
-import Resorts from './components/Pages/Resorts';
+import Resorts from './components/Pages/Destinations';
 import Reserve from './components/Pages/Reserve';
 import AddResort from './components/Pages/AddResort';
 import DeleteResort from './components/Pages/DeleteResort';
