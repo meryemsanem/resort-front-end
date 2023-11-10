@@ -6,6 +6,7 @@
     flex-direction: column;
     height: 100vh;
     transition: all 0.3s ease;
+    z-index: 2;
   }
 
   .footer {
@@ -32,6 +33,7 @@
     width: 100%;
     position: fixed;
     transition: all 0.3s ease;
+    z-index: 2;
   }
 
   .hamburger-icon {
@@ -45,6 +47,7 @@
     font-size: 24px;
     margin: 10px;
     justify-content: center;
+    z-index: 2;
   }
 
   .open-links {
