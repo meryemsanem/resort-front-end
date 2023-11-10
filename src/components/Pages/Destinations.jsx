@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,11 +9,13 @@ import styles from './Destinations.css';
 
 const Destinations = () => {
   const destinations = useSelector((state) => state.destinations);
-
   const navigate = useNavigate();
-
   const {
-    card, cardTop, cardBottom, carouselContainer, carouselTitle,
+    card,
+    cardTop,
+    cardBottom,
+    carouselContainer,
+    carouselTitle,
   } = styles;
 
   const settings = {
@@ -60,23 +61,29 @@ const Destinations = () => {
     <div className="page-container">
       <div className={carouselContainer}>
         <h1 className={carouselTitle}>LATEST SAFARIS</h1>
-        <Slider {...settings}>
-          {destinations.map((destination) => (
-            <div key={destination.id}>
-              <div className={card}>
-                <div className={cardTop}>
-                  <img src={destination.image_url} alt={destination.name} />
-                  <h2>{destination.city_name}</h2>
-                </div>
-                <div className={cardBottom}>
-                  <h3>{destination.name}</h3>
-                  <p>{destination.description}</p>
-                  <button type="button" onClick={() => handleSpecificPage(destination.id)}>Learn More</button>
+        {destinations && destinations.length > 0 ? (
+          <Slider {...settings}>
+            {destinations.map((destination) => (
+              <div key={destination.id}>
+                <div className={card}>
+                  <div className={cardTop}>
+                    <img src={destination.image_url} alt={destination.name} />
+                    <h2>{destination.city_name}</h2>
+                  </div>
+                  <div className={cardBottom}>
+                    <h3>{destination.name}</h3>
+                    <p>{destination.description}</p>
+                    <button type="button" onClick={() => handleSpecificPage(destination.id)}>
+                      Learn More
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        ) : (
+          <p>No destinations available.</p>
+        )}
       </div>
     </div>
   );
