@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import SplashScreen from './components/Resort/SplashScreen';
+import SplashScreen from './components/Pages/SplashScreen';
 import Navigation from './components/Navigation/Navigation';
-import Resorts from './components/Resort/Resorts';
-import Reserve from './components/Resort/Reserve';
-import AddResort from './components/Resort/AddResort';
-import DeleteResort from './components/Resort/DeleteResort';
-import Reservations from './components/Resort/Reservations';
+import Resorts from './components/Pages/Destinations';
+import Reserve from './components/Pages/Reserve';
+import AddResort from './components/Pages/AddResort';
+import DeleteResort from './components/Pages/DeleteResort';
+import Reservations from './components/Pages/Reservations';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
-import Logout from './components/Resort/Logout';
+import Logout from './components/Pages/Logout';
 import { setIsAuthenticated } from './components/redux/AuthenticationSlice';
 
 const App = () => {
