@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logIn } from '../redux/AuthenticationSlice';
+import { logIn, fetchCurrentUser } from '../redux/AuthenticationSlice';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,22 +24,24 @@ const Login = () => {
       },
     }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(logIn(newSession))
-      .then((res) => {
-        if (res.payload) {
-          navigate('/resorts');
-        } else {
-          setErrorMessage('Incorrect email or password. Please try again.');
-          setError(true);
-        }
-      })
-      .catch((error) => {
-        console.error('Login failed:', error);
-        setErrorMessage('ERROR. Please try again.');
+
+    try {
+      const res = await dispatch(logIn(newSession));
+
+      if (res.payload) {
+        dispatch(fetchCurrentUser());
+        navigate('/resorts');
+      } else {
+        setErrorMessage('Incorrect email or password. Please try again.');
         setError(true);
-      });
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+      setErrorMessage('ERROR. Please try again.');
+      setError(true);
+    }
   };
   return (
     <>

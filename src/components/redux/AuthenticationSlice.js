@@ -12,6 +12,7 @@ const initialState = {
 const LOGIN_URL = 'http://127.0.0.1:4000/login';
 const LOGOUT_URL = 'http://127.0.0.1:4000/logout';
 const SIGNUP_URL = 'http://127.0.0.1:4000/signup';
+const CURRENT_USER_URL = 'http://127.0.0.1:4000/api/v1/users/current_user';
 
 export const signUp = createAsyncThunk('user/signup', async (newUser) => {
   const response = await axios.post(`${SIGNUP_URL}`, newUser);
@@ -23,9 +24,8 @@ export const signUp = createAsyncThunk('user/signup', async (newUser) => {
 
 export const logIn = createAsyncThunk('user/login', async (newSession) => {
   const response = await axios.post(`${LOGIN_URL}`, newSession);
-  console.log('Login response:', response);
   sessionStorage.setItem('authToken', response.headers.authorization);
-  sessionStorage.setItem('isAuthenticated', 'true');
+  console.log(response);
   return response.data.status;
 });
 
@@ -41,6 +41,20 @@ export const logOut = createAsyncThunk('user/logout', async () => {
   sessionStorage.removeItem('authToken');
   sessionStorage.removeItem('isAuthenticated');
 });
+
+export const fetchCurrentUser = createAsyncThunk(
+  'get/fetchCurrentUser',
+  async () => {
+    const authToken = sessionStorage.getItem('authToken');
+    const response = await axios.get(`${CURRENT_USER_URL}`, {
+      headers: {
+        Authorization: authToken,
+      },
+    });
+    console.log(response);
+    return response.data;
+  },
+);
 
 const authenticationSlice = createSlice({
   name: 'authentication',
@@ -62,13 +76,18 @@ const authenticationSlice = createSlice({
         ...state,
         isAuthenticated: true,
         authToken: action.payload,
-        response: action.payload,
       }))
       .addCase(logOut.fulfilled, (state) => ({
         ...state,
         isAuthenticated: false,
         authToken: '',
-      }));
+      }))
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        console.log('Fetch Current User Action:', action);
+        state.isLoading = false;
+        state.isAuthenticated = true;
+        state.user_id = action.payload.id;
+      });
   },
 });
 

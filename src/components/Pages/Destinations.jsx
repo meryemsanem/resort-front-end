@@ -47,6 +47,12 @@ const Destinations = () => {
     fetchData();
   }, []);
 
+  const generateDots = (length, color) => (
+    <span style={{ color, fontWeight: 'bold' }}>
+      {Array(length).fill('.').join(' ')}
+    </span>
+  );
+
   return (
     <div className="page-container">
       <div className="container-destination">
@@ -77,17 +83,17 @@ const Destinations = () => {
                   <img src={destination.image_url} alt={destination.name} />
                   <div className="card-bottom">
                     <h3>{destination.name}</h3>
-                    <hr width="55%" />
+                    {generateDots(15, '#aaa')}
                     <p>{destination.description}</p>
                     <div className="social-group">
+                      <span className="social-icon">
+                        <i className="fa fa-facebook" />
+                      </span>
                       <span className="social-icon">
                         <i className="fa fa-twitter" />
                       </span>
                       <span className="social-icon">
-                        <i className="fa fa-linkedin" />
-                      </span>
-                      <span className="social-icon">
-                        <i className="fa fa-github" />
+                        <i className="fa fa-instagram" />
                       </span>
                     </div>
                   </div>
