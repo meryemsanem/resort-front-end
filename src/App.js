@@ -13,6 +13,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Logout from './components/Pages/Logout';
 import { setIsAuthenticated } from './components/redux/AuthenticationSlice';
+import ResortDetails from './components/Pages/detailpage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/add_resort" element={<AddResort />} />
         <Route path="/delete_resort" element={<DeleteResort />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/details/:id" element={<ResortDetails />} />
       </Routes>
     </div>
   );
