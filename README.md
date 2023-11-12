@@ -1,70 +1,201 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <br/>
+ <img src="resort-app.png" alt="Resort Vista Logo" width="250" height="250"/>
+  <h1><b>Resort Vista</b></h1>
+</div>
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
 
-In the project directory, you can run:
+## 📗 Table of Contents
 
-### `npm start`
+- [🏝️ Resort Vista](#about-project)
+  - [🛠️ Built With](#built-with)
+     - [⚙️ Tech Stack](#tech-stack)
+     - [🌟 Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
+  - [🔗 Link for the Backend API](#backend)
+  - [🔗 Kanban Board](#kanban)
+  - [💻 Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+  - [👥 Authors](#authors)
+  - [🔭 Future Features](#future-features)
+  - [🤝 Contributing](#contributing)
+  - [⭐️ Show Your Support](#️show-your-support)
+  - [🙏 Acknowledgments](#acknowledgments)
+  - [📝 License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- ABOUT PROJECT -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Resort Vista <a name="about-project"></a>
 
-### `npm test`
+**Resort Vista** is a web application built with a Ruby on Rails backend API and a React frontend UI, offering users a platform to explore and manage resort reservations. Whether you're planning a getaway or looking for a relaxing vacation spot, Resort Vista provides a seamless experience to discover, reserve, and manage your resort bookings.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠 Built With <a name="built-with"></a>
 
-### `npm run build`
+### Tech Stack <a name="tech-stack"></a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Ruby on Rails](https://rubyonrails.org) - A powerful web application framework for the backend API.
+- [React](https://reactjs.org) - A JavaScript library for building user interfaces on the frontend UI.
+- [Redux](https://redux.js.org/) - A state management library for managing application state in the frontend.
+- [PostgreSQL](https://www.postgresql.org) - An open-source relational database.
+- [Bundler](https://bundler.io) - A tool for managing Ruby gem dependencies.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<!-- FEATURES -->
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Key Features <a name="key-features"></a>
 
-### `npm run eject`
+- 🔐 **Splash Screen**: Begin your resort journey with confidence! The splash screen features secure authentication. Start your exploring with a captivating splash screen that invites you to log in or sign up.
+- 🌏 **Explore Resorts**: Discover a curated selection of resorts, each offering unique experiences and amenities.
+- ✔️ **Reserve Your Spot**: Reserve your desired fav resort.
+- 📅 **Manage Reservations**: Effortlessly manage your resort bookings, including viewing details.
+- 🖥️ **User-Friendly Interface**: Enjoy an user-friendly interface.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- LIVE DEMO -->
+## 🚀 Live Demo <a name="live-demo"></a>
+- Soon.. [Live Demo Link]()
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- BACKEND -->
 
-## Learn More
+## 🔗 Link for the Backend UI <a name="backend"></a>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [Resort Vista Backend](https://github.com/meryemsanem/resort-back-end)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Code Splitting
+<!-- KANBAN -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🔗 Kanban Board <a name="kanban"></a>
 
-### Analyzing the Bundle Size
+- [Kanban Board](https://github.com/meryemsanem/resort-back-end/projects/1)
+- [Initial Kanban Board](https://user-images.githubusercontent.com/82718562/279994279-135a04c3-6cc8-4814-a12b-964653967c82.png)
+- There are 4 member in our group.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Making a Progressive Web App
+<!-- GETTING STARTED -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 💻 Getting Started <a name="getting-started"></a>
 
-### Advanced Configuration
+To get a local copy up and running, follow these steps.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Prerequisites
 
-### Deployment
+In order to run this project, you need to have the following installed:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [Ruby on Rails](https://rubyonrails.org) - A powerful web application framework for the backend API.
+- [Ruby](https://www.ruby-lang.org/en/) - The programming language used by Rails.
+- [PostgreSQL](https://www.postgresql.org) - An open-source relational database.
+- [Bundler](https://bundler.io) - A tool for managing Ruby gem dependencies.
+- [Node.js and npm](https://nodejs.org) - JavaScript runtime and package manager for the frontend.
 
-### `npm run build` fails to minify
+### Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Clone this repository to your desired folder:
+
+```bash
+git clone https://github.com/meryemsanem/resort-frond-end.git
+```
+
+### Install
+
+Install this project with:
+
+```bash
+  cd resort-front-end
+  npm install
+```
+
+it will install the required gemfile for running the project
+
+### Usage
+
+```bash
+  npm start
+```
+The frontend will be available at `http://localhost:3000`.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- AUTHORS -->
+
+## 👥 Authors <a name="authors"></a>
+
+👤 **Meryem Sanem Küçükbayram**
+
+- GitHub: [Meryem Sanem Küçükbayram](https://github.com/meryemsanem)
+- LinkedIn: [Meryem Sanem Küçükbayram](https://www.linkedin.com/in/meryemsanemkucukbayram/)
+
+👤 **Abd elhakim Zayan**
+
+- GitHub: [Abd elhakim Zayan](https://github.com/abdozayan12)
+- LinkedIn: [Abd elhakim Zayan](https://www.linkedin.com/in/abdozayan/)
+
+
+👤 **Yusuf Sholotan**
+
+- GitHub: [Yusuf Sholotan](https://github.com/yin-ka)
+- LinkedIn: [Yusuf Sholotan](https://www.linkedin.com/in/yusuf-sholotan/)
+
+👤 **Clarence Atim**
+
+- GitHub: [Clarence Atim](https://github.com/ClarenceAtim)
+- LinkedIn: [Clarence Atim](https://www.linkedin.com/in/tegum-clarence-615b58200)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- 🔎 **Search and Filter**: Allow users to search for resorts and filter by criteria such as fee, location, and more.
+
+- 💬 **User Reviews**: Implement a user review system where visitors can leave reviews and ratings for resorts, helping others make informed decisions.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/meryemsanem/resort-front-end/issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- SUPPORT -->
+
+## ⭐️ Show your support <a name="support"></a>
+
+If you find Resort Vista helpful or interesting, show your support by starring this repository on GitHub. Your stars let us know that you appreciate our work and find value in the project. ⭐️
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+This project's design is inspired by the work of Murat Korkmaz on Behance.Therefore, we express our gratitude to Murat Korkmaz for the inspiring design that contributes to the visual appeal of Resort Vista.
+
+Thank you for the incredible design inspiration! 🙏
+
+- **Behance:** [Murat Korkmaz](https://www.behance.net/muratk)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
