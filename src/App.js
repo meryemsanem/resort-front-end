@@ -11,6 +11,7 @@ import Reserve from './components/Resort/Reserve';
 import AddResort from './components/Resort/AddResort';
 import DeleteResort from './components/Resort/DeleteResort';
 import './App.css';
+import ResortDetails from './components/Resort/detailpage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/add_resort" element={<AddResort />} />
                   <Route path="/delete_resort" element={<DeleteResort />} />
                   <Route path="/logout" element={<Logout />} />
+                  <Route path="/details" element={<ResortDetails />} />
                 </Routes>
               </div>
             </div>
