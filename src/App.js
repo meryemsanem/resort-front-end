@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import SplashScreen from './components/Pages/SplashScreen';
 import Navigation from './components/Navigation/Navigation';
-import Resorts from './components/Pages/Destinations';
+import Destinations from './components/Pages/Destinations';
 import Reserve from './components/Pages/Reserve';
 import AddResort from './components/Pages/AddResort';
 import DeleteResort from './components/Pages/DeleteResort';
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/" element={<SplashScreen />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/resorts" element={<Resorts />} />
+        <Route path="/resorts" element={<Destinations />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/reserve" element={<Reserve />} />
         <Route path="/add_resort" element={<AddResort />} />

@@ -132,13 +132,6 @@
   }
 }
 
-.social-media {
-  display: flex;
-  gap: 10px;
-  margin: auto;
-  color: #333;
-}
-
 .copyright {
   display: flex;
   align-items: center;
@@ -179,12 +172,4 @@
 .app-splash {
   display: flex;
   align-content: center;
-}
-
-.social-group {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  margin: auto;
 }
