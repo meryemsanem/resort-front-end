@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
@@ -13,7 +14,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Logout from './components/Pages/Logout';
 import { setIsAuthenticated } from './components/redux/AuthenticationSlice';
-import ResortDetails from './components/Pages/detailpage';
+import ResortDetails from './components/Pages/ResortDetails';
 
 const App = () => {
   const dispatch = useDispatch();

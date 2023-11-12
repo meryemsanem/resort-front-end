@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -28,7 +30,7 @@ const Destinations = () => {
   };
 
   const handleSpecificPage = (id, resort) => {
-    navigate(`/details/${id}`, {state: {resort}});
+    navigate(`/details/${id}`, { state: { destination: resort } });
   };
 
   useEffect(() => {

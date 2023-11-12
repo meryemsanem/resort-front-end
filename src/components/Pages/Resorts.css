@@ -1,3 +1,5 @@
+
+
 .common-container {
   display: flex;
   flex-direction: column;
@@ -191,9 +193,8 @@
   gap: 1rem;
 }
 
-.border {
+.details {
   list-style: none;
-  display: flex;
   gap: 2.5rem;
   background-color: #eee;
   padding: 0.9rem 3.5rem;
