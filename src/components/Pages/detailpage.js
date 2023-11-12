@@ -4,14 +4,14 @@ import { useNavigate, useParams } from "react-router";
 import { IconContext } from 'react-icons';
 import * as FcIcon from 'react-icons/fc';
 import * as AiIcon from 'react-icons/ai';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import "./Resorts.css";
 
 const ResortDetails = () => {
   const { id } = useParams();
-//   const location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
-//   const { house } = location.state;
+  const { destination } = location.state;
 
   return (
     <IconContext.Provider value={{ color: '#fff' }}>
@@ -19,14 +19,15 @@ const ResortDetails = () => {
         <div id="card-container">
           <div id="img-container">
             <img
-            src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdXNlfGVufDB8fDB8fHww"
-              id="detail-img"
+               src={destination.image_url} 
+               alt={destination.name}             
+                id="detail-img"
               alt="resort"
             />
           </div>
           <div id="detail-info">
             <div className="house-address">
-              <h1 id="house-name">Beautiful house</h1>
+              <h1 id="house-name">{destination.name}</h1>
               <p id="location">Bamenda cameroon</p>
             </div>
             <div className="price-container">
@@ -48,15 +49,15 @@ const ResortDetails = () => {
             </div>
             <p id="description">
               <span className="detail">Detail:</span>
-              leorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum quia
+          {destination.description}
             </p>
-            <button id="reserver-btn" type="button" onClick={() => { navigate(`/houses/${house?.id}/reservations`); }}>
+            <button id="reserver-btn" type="button" onClick={() => { navigate(`/reservations`); }}>
               Reserve
               <FcIcon.FcOvertime id="reserve-icon" />
             </button>
           </div>
         </div>
-        <button type="button" className="back" onClick={() => navigate(`/home`)}>
+        <button type="button" className="back" onClick={() => navigate(`/resorts`)}>
           <AiIcon.AiFillCaretLeft />
           {' '}
           back
