@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import './reservationForm.css';
 
 const ReservationForm = () => {
   const [destinationOptions, setDestinationOptions] = useState([]);
