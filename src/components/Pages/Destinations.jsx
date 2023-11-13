@@ -27,8 +27,8 @@ const Destinations = () => {
     },
   };
 
-  const handleSpecificPage = (id) => {
-    navigate(`/destinations/${id}`);
+  const handleSpecificPage = (id, resort) => {
+    navigate(`/details/${id}`, { state: { destination: resort } });
   };
 
   useEffect(() => {
@@ -73,10 +73,10 @@ const Destinations = () => {
                   className="destination-card"
                   role="button"
                   tabIndex={0}
-                  onClick={() => handleSpecificPage(destination.id)}
+                  onClick={() => handleSpecificPage(destination.id, destination)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
-                      handleSpecificPage(destination.id);
+                      handleSpecificPage(destination.id, destination);
                     }
                   }}
                 >
