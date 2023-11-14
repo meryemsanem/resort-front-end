@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from '../redux/AuthenticationSlice';
+import LoadingSpinner from './LoadingSpinner';
+import './Reservations.css';
 
 const Reservations = () => {
   const [reservations, setReservations] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.authentication);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchReservationsData = async (userId, authToken) => {
       try {
-        console.log('Fetching current user');
-        await dispatch(fetchCurrentUser());
+        setLoading(true);
 
-        const authToken = sessionStorage.getItem('authToken');
-        console.log('Current User:', currentUser);
-
-        const userId = currentUser.user_id;
-
-        if (!currentUser || !currentUser.user_id) {
-          console.error(
-            'Invalid:',
-            currentUser,
-          );
+        if (!authToken) {
+          console.error('No authToken present');
           return;
         }
 
@@ -35,53 +29,93 @@ const Reservations = () => {
           },
         );
 
-        console.log('Response:', response);
-
         if (!response.ok) {
           console.error('Failed to fetch reservations:', response.statusText);
           return;
         }
 
         const data = await response.json();
-        console.log('Reservations data:', data);
-        console.log('User ID: ', userId);
-        setReservations(data);
+
+        const reservationsWithFee = await Promise.all(
+          data.map(async (reservation) => {
+            const feeResponse = await fetch(
+              `http://127.0.0.1:4000/api/v1/destinations/${reservation.destination_id}`,
+            );
+            const feeData = await feeResponse.json();
+
+            return {
+              ...reservation,
+              fee: feeData.fee,
+            };
+          }),
+        );
+
+        setReservations(reservationsWithFee);
       } catch (error) {
-        console.error('Error fetching reservations data:', error);
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchData();
+    dispatch(fetchCurrentUser())
+      .then(() => {
+        const authToken = sessionStorage.getItem('authToken');
+        const userId = currentUser.user_id;
+
+        fetchReservationsData(userId, authToken);
+      })
+      .catch((error) => {
+        console.error('Error fetching current user:', error);
+      });
   }, [dispatch, currentUser]);
 
   return (
     <div className="reservations-container">
-      <h1>Reservations</h1>
-      {reservations.length > 0 ? (
-        <ul>
-          {reservations.map((reservation) => (
-            <li key={reservation.id}>
-              <p className="destination-name">
-                Destination:
-                {reservation.destination.name}
-              </p>
-              <p className="destination-date">
-                Start Date:
-                {reservation.start_date}
-                <br />
-                <br />
-                End Date:
-                {reservation.end_date}
-              </p>
-              <p className="destination-city">
-                City:
-                {reservation.destination.city_name}
-              </p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No reservations.</p>
+      <h1 className="reservations-title">Reservations</h1>
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
+        <>
+          {reservations.length > 0 ? (
+            <table className="reservation-table">
+              <thead>
+                <tr>
+                  <th>Resort</th>
+                  <th>Fee</th>
+                  <th>Total Fee</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>City</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reservations.map((reservation) => (
+                  <tr key={reservation.id}>
+                    <td className="destination-name">
+                      {reservation.destination.name}
+                    </td>
+                    <td>
+                      $
+                      {reservation.fee}
+                    </td>
+                    <td>
+                      $
+                      {reservation.fee
+                        * ((new Date(reservation.end_date)
+                          - new Date(reservation.start_date))
+                          / (1000 * 60 * 60 * 24))}
+                    </td>
+                    <td>{reservation.start_date}</td>
+                    <td>{reservation.end_date}</td>
+                    <td>{reservation.destination.city_name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="no-reservations-message">No reservations.</p>
+          )}
+        </>
       )}
     </div>
   );

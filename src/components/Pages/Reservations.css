@@ -1,0 +1,66 @@
+.reservations-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.reservations-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #555;
+}
+
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.reservation-table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+  color: #5c5656;
+}
+
+.reservation-table th {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+  color: #555;
+}
+
+.destination-name {
+  font-weight: bold;
+}
+
+.no-reservations-message {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  color: #555;
+}
+
+.loading {
+  font-size: 20px;
+  color: red;
+  text-align: center;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.loading-spinner img {
+  width: 100px;
+  height: 100px;
+}
