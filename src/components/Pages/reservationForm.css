@@ -4,7 +4,6 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -21,27 +20,26 @@ form {
   max-width: 400px;
   display: flex;
   flex-direction: column;
-}
-
-div {
-  margin-bottom: 20px;
+  justify-content: center;
+  text-align: center;
 }
 
 label {
   font-weight: bold;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 select,
-input[type="date"],
-input[type="text"] {
+input[type='date'],
+input[type='text'] {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
   width: 100%;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   padding: 10px;
   background-color: #007bff;
   color: white;
@@ -50,6 +48,6 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background-color: #0056b3;
 }

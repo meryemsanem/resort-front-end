@@ -95,3 +95,8 @@ img {
   color: #ccc;
   border: 2px solid #ccc;
 }
+
+.no {
+  display: flex;
+  justify-content: center;
+}
