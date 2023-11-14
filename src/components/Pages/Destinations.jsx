@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import DeleteResort from './DeleteResort';
 import './Destinations.css';
 
 const Destinations = () => {
@@ -31,19 +32,17 @@ const Destinations = () => {
     navigate(`/details/${id}`, { state: { destination: resort } });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'http://127.0.0.1:4000/api/v1/destinations',
-        );
-        const data = await response.json();
-        setDestinations(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:4000/api/v1/destinations');
+      const data = await response.json();
+      setDestinations(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -53,54 +52,72 @@ const Destinations = () => {
     </span>
   );
 
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`http://127.0.0.1:4000/api/v1/destinations/${id}`, {
+        method: 'DELETE',
+      });
+      // Update the local state by removing the deleted destination
+      setDestinations(destinations.filter((dest) => dest.id !== id));
+    } catch (error) {
+      console.error('Error deleting destination:', error);
+    }
+  };
+
   return (
     <div className="page-container">
       <div className="container-destination">
         <h1 className="page-title">LATEST RESORTS</h1>
         <p className="page-title1">Please choose your favorite Resort</p>
         {destinations && destinations.length > 0 ? (
-          <Swiper
-            navigation
-            modules={[Navigation]}
-            className="mySwiper"
-            spaceBetween={swiperConfig.spaceBetween}
-            slidesPerView={swiperConfig.slidesPerView}
-            breakpoints={swiperConfig.breakpoints}
-          >
-            {destinations.map((destination) => (
-              <SwiperSlide key={destination.id}>
-                <div
-                  className="destination-card"
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => handleSpecificPage(destination.id, destination)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      handleSpecificPage(destination.id, destination);
-                    }
-                  }}
-                >
-                  <img src={destination.image_url} alt={destination.name} />
-                  <div className="card-bottom">
-                    <h3>{destination.name}</h3>
-                    {generateDots(15, '#aaa')}
-                    <p>{destination.description}</p>
-                    <div className="social-group">
-                      <span className="social-icon">
-                        <i className="fa fa-facebook" />
-                      </span>
-                      <span className="social-icon">
-                        <i className="fa fa-twitter" />
-                      </span>
-                      <span className="social-icon">
-                        <i className="fa fa-instagram" />
-                      </span>
+          <>
+            <DeleteResort
+              destinations={destinations}
+              onDelete={handleDelete}
+            />
+            <Swiper
+              navigation
+              modules={[Navigation]}
+              className="mySwiper"
+              spaceBetween={swiperConfig.spaceBetween}
+              slidesPerView={swiperConfig.slidesPerView}
+              breakpoints={swiperConfig.breakpoints}
+            >
+              {destinations.map((destination) => (
+                <SwiperSlide key={destination.id}>
+                  <div
+                    className="destination-card"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleSpecificPage(destination.id, destination)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleSpecificPage(destination.id, destination);
+                      }
+                    }}
+                  >
+                    <img src={destination.image_url} alt={destination.name} />
+                    <div className="card-bottom">
+                      <h3>{destination.name}</h3>
+                      {generateDots(15, '#aaa')}
+                      <p>{destination.description}</p>
+                      <div className="social-group">
+                        <span className="social-icon">
+                          <i className="fa fa-facebook" />
+                        </span>
+                        <span className="social-icon">
+                          <i className="fa fa-twitter" />
+                        </span>
+                        <span className="social-icon">
+                          <i className="fa fa-instagram" />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
         ) : (
           <p>No destinations available.</p>
         )}
