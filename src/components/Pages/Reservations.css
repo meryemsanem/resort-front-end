@@ -4,17 +4,16 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: 20px auto;
 }
 
 .reservations-title {
+  font-family: Pacifico, sans-serif;
   font-size: 26px;
   margin-bottom: 20px;
   text-align: center;
-  color: #555;
+  color: #862525;
+  text-transform: uppercase;
 }
 
 .reservation-table {
@@ -27,14 +26,15 @@
   border: 1px solid #ddd;
   padding: 15px;
   text-align: left;
-  color: #5c5656;
+  color: #6375ce;
 }
 
 .reservation-table th {
   text-align: center;
   border: 1px solid #ddd;
-  padding: 20px;
-  color: #555;
+  padding: 15px;
+  color: #2b2659;
+  background-color: #f2f2f2;
 }
 
 .destination-name {
@@ -58,9 +58,20 @@
 .loading-spinner {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .loading-spinner img {
   width: 100px;
   height: 100px;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
