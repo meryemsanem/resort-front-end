@@ -17,16 +17,13 @@ import ResortDetails from './components/Pages/ResortDetails';
 
 const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     const isAuthenticatedFromStorage = sessionStorage.getItem('isAuthenticated') === 'true';
     dispatch(setIsAuthenticated(isAuthenticatedFromStorage));
   }, [dispatch]);
-
   const isAuthenticated = useSelector(
     (state) => state.authentication.isAuthenticated,
   );
-
   return (
     <div className="app-splash">
       {isAuthenticated && <Navigation />}
@@ -45,5 +42,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;

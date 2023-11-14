@@ -36,6 +36,8 @@
 
 img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .card-bottom {
@@ -43,17 +45,23 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 250px;
 }
 
 .card-bottom h3 {
-  font-size: 20px;
+  font-size: 1rem;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .card-bottom p {
   font-size: 16px;
   color: #555;
   margin-top: 20px;
+  display: block;
+
+  /* margin: 20px auto; */
+  text-align: center;
 }
 
 .card-bottom button {
@@ -70,9 +78,9 @@ img {
 }
 
 .social-group {
+  margin-top: auto;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
   gap: 10px;
 }
 
