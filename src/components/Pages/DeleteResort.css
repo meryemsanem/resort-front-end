@@ -1,4 +1,4 @@
-div {
+/* .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -7,30 +7,30 @@ div {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.sub_heading {
   color: #333;
 }
 
-table {
+.table {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
 }
 
-th,
-td {
+.th,
+.td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
 }
 
-th {
+.th {
   background-color: #8fcd09;
   color: #fff;
 }
 
-button {
-  background-color: #8fcd09;
+.button {
+  background-color: #555454;
   color: #fff;
   padding: 8px 12px;
   border: none;
@@ -38,11 +38,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.button:hover {
   background-color: #6f9f00;
 }
 
-p {
+.loading {
   color: #333;
   font-size: 16px;
-}
+} */

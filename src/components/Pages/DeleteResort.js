@@ -19,7 +19,7 @@ const DeleteResort = () => {
   }, []);
 
   if (!destinations || !Array.isArray(destinations)) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
 
   const handleDelete = async (id) => {
@@ -34,13 +34,13 @@ const DeleteResort = () => {
   };
 
   return (
-    <div>
-      <h2>Delete Resorts</h2>
-      <table>
+    <div className="container">
+      <h2 className="sub_heading">Delete Resorts</h2>
+      <table className="table">
         <thead>
           <tr>
-            <th>Lists of Resorts</th>
-            <th>Delete Resorts</th>
+            <th className="th">Lists of Resorts</th>
+            <th className="td">Delete Resorts</th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +49,7 @@ const DeleteResort = () => {
               <td>{destination.name}</td>
               <td>
                 <button
+                  className="button"
                   type="button"
                   onClick={() => handleDelete(destination.id)}
                   style={{ cursor: 'pointer' }}
