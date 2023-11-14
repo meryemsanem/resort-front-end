@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import {
+  setIsAuthenticated,
+  fetchCurrentUser,
+} from './components/redux/AuthenticationSlice';
 import './App.css';
 import SplashScreen from './components/Pages/SplashScreen';
 import Navigation from './components/Navigation/Navigation';
@@ -12,18 +16,23 @@ import Reservations from './components/Pages/Reservations';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Logout from './components/Pages/Logout';
-import { setIsAuthenticated } from './components/redux/AuthenticationSlice';
 import ResortDetails from './components/Pages/ResortDetails';
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    const isAuthenticatedFromStorage = sessionStorage.getItem('isAuthenticated') === 'true';
-    dispatch(setIsAuthenticated(isAuthenticatedFromStorage));
-  }, [dispatch]);
   const isAuthenticated = useSelector(
     (state) => state.authentication.isAuthenticated,
   );
+
+  useEffect(() => {
+    const isAuthenticatedFromStorage = sessionStorage.getItem('isAuthenticated') === 'true';
+    console.log('isAuthenticatedFromStorage:', isAuthenticatedFromStorage);
+    dispatch(setIsAuthenticated(isAuthenticatedFromStorage));
+
+    if (isAuthenticatedFromStorage) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch]);
   return (
     <div className="app-splash">
       {isAuthenticated && <Navigation />}

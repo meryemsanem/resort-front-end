@@ -173,3 +173,9 @@
   display: flex;
   align-content: center;
 }
+
+.message {
+  font-size: 24px;
+  color: red;
+  margin: 10px 0;
+}
