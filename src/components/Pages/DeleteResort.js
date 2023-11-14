@@ -35,7 +35,7 @@ const DeleteResort = () => {
 
   return (
     <div className="container">
-      <h2 className="sub_heading">Delete Resorts</h2>
+      <h2 className="sub_heading">Available Resorts</h2>
       <table className="table">
         <thead>
           <tr>
