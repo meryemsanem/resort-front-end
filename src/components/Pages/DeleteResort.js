@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './DeleteResort.css';
 
 const DeleteResort = () => {
   const [destinations, setDestinations] = useState([]);
