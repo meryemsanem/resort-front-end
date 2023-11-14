@@ -1,50 +1,68 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 
-const DeleteResort = ({ destinations, onDelete }) => {
+const DeleteResort = () => {
+  const [destinations, setDestinations] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:4000/api/v1/destinations');
+      const data = await response.json();
+      setDestinations(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   if (!destinations || !Array.isArray(destinations)) {
     return <p>Loading...</p>;
   }
 
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`http://127.0.0.1:4000/api/v1/destinations/${id}`, {
+        method: 'DELETE',
+      });
+      setDestinations(destinations.filter((dest) => dest.id !== id));
+    } catch (error) {
+      console.error('Error deleting destination:', error);
+    }
+  };
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>City</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {destinations.map((destination) => (
-          <tr key={destination.id}>
-            <td>{destination.name}</td>
-            <td>{destination.city}</td>
-            <td>
-              <button type="button" onClick={() => onDelete(destination.id)}>
-                Delete
-              </button>
-            </td>
+    <div>
+      <h2>Delete Resorts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Action</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {destinations.map((destination) => (
+            <tr key={destination.id}>
+              <td>{destination.name}</td>
+              <td>{destination.city}</td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(destination.id)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
-};
-
-DeleteResort.propTypes = {
-  destinations: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-    }),
-  ),
-  onDelete: PropTypes.func.isRequired,
-};
-
-DeleteResort.defaultProps = {
-  destinations: [],
 };
 
 export default DeleteResort;
