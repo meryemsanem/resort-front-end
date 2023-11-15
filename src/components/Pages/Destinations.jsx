@@ -4,10 +4,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import LoadingSpinner from './LoadingSpinner';
 import './Destinations.css';
 
 const Destinations = () => {
   const [destinations, setDestinations] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const swiperConfig = {
@@ -31,17 +33,21 @@ const Destinations = () => {
     navigate(`/details/${id}`, { state: { destination: resort } });
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:4000/api/v1/destinations');
-      const data = await response.json();
-      setDestinations(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'http://127.0.0.1:4000/api/v1/destinations',
+        );
+        const data = await response.json();
+        setDestinations(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData();
   }, []);
 
@@ -56,7 +62,8 @@ const Destinations = () => {
       <div className="container-destination">
         <h1 className="page-title">LATEST RESORTS</h1>
         <p className="page-title1">Please choose your favorite Resort</p>
-        {destinations && destinations.length > 0 ? (
+        {isLoading && <LoadingSpinner />}
+        {!isLoading && destinations && destinations.length > 0 ? (
           <Swiper
             navigation
             modules={[Navigation]}
@@ -99,7 +106,8 @@ const Destinations = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-        ) : (
+        ) : null}
+        {!isLoading && (!destinations || destinations.length === 0) && (
           <p>No destinations available.</p>
         )}
       </div>

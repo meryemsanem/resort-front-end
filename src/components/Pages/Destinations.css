@@ -1,6 +1,6 @@
 .page-container {
-  margin: 0 auto;
   max-width: 80%;
+  width: 100%;
 }
 
 .container-destination {
@@ -94,4 +94,9 @@ img {
   margin: 0 5px;
   color: #ccc;
   border: 2px solid #ccc;
+}
+
+.no {
+  display: flex;
+  justify-content: center;
 }

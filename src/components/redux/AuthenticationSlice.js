@@ -25,10 +25,10 @@ export const signUp = createAsyncThunk('user/signup', async (newUser) => {
 export const logIn = createAsyncThunk('user/login', async (newSession) => {
   const response = await axios.post(`${LOGIN_URL}`, newSession);
   sessionStorage.setItem('authToken', response.headers.authorization);
-  console.log(response);
+  console.log('Logged in. Setting isAuthenticated to true');
+  sessionStorage.setItem('isAuthenticated', 'true');
   return response.data.status;
 });
-
 export const logOut = createAsyncThunk('user/logout', async () => {
   const authToken = sessionStorage.getItem('authToken');
 
@@ -43,16 +43,20 @@ export const logOut = createAsyncThunk('user/logout', async () => {
 });
 
 export const fetchCurrentUser = createAsyncThunk(
-  'get/fetchCurrentUser',
+  'authentication/fetchCurrentUser',
   async () => {
-    const authToken = sessionStorage.getItem('authToken');
-    const response = await axios.get(`${CURRENT_USER_URL}`, {
-      headers: {
-        Authorization: authToken,
-      },
-    });
-    console.log(response);
-    return response.data;
+    try {
+      const authToken = sessionStorage.getItem('authToken');
+      const response = await axios.get(`${CURRENT_USER_URL}`, {
+        headers: {
+          Authorization: authToken,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching current user:', error);
+      throw error;
+    }
   },
 );
 
@@ -77,16 +81,12 @@ const authenticationSlice = createSlice({
         isAuthenticated: true,
         authToken: action.payload,
       }))
-      .addCase(logOut.fulfilled, (state) => ({
-        ...state,
-        isAuthenticated: false,
-        authToken: '',
-      }))
+      .addCase(logOut.fulfilled, () => initialState)
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        console.log('Fetch Current User Action:', action);
         state.isLoading = false;
         state.isAuthenticated = true;
         state.user_id = action.payload.id;
+        console.log('User ID:', action.payload.id);
       });
   },
 });

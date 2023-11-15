@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import LoadingSpinner from './LoadingSpinner';
 import './reservationForm.css';
 
 const ReservationForm = () => {
@@ -10,9 +11,16 @@ const ReservationForm = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [username, setUsername] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setLoading] = useState(false);
+
   const currentUser = useSelector((state) => state.authentication);
   const { state } = useLocation();
   const { destination } = state || {};
+  const navigate = useNavigate();
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+
   useEffect(() => {
     const fetchResorts = async () => {
       try {
@@ -26,23 +34,20 @@ const ReservationForm = () => {
     };
     fetchResorts();
   }, []);
+
   useEffect(() => {
-    // Autofill destination if available in location state
-    if (destination) {
+    if (destination && destination.id) {
       setSelectedDestination(destination);
     }
   }, [destination]);
   useEffect(() => {
-    // Fetch and autofill username with current user's name
-    const fetchCurrentUser = async () => {
+    const fetchCurrentUserDetails = async () => {
       const authToken = sessionStorage.getItem('authToken');
       try {
         const response = await axios.get(
           `http://127.0.0.1:4000/api/v1/users/${currentUser.user_id}`,
           {
-            headers: {
-              Authorization: authToken,
-            },
+            headers: { Authorization: authToken },
           },
         );
         setUsername(response.data.name);
@@ -50,25 +55,34 @@ const ReservationForm = () => {
         console.error('Error fetching user data:', error);
       }
     };
+
     if (currentUser.user_id) {
-      fetchCurrentUser();
+      fetchCurrentUserDetails();
     }
   }, [currentUser]);
+
   const handleReservationSubmit = async () => {
     const authToken = sessionStorage.getItem('authToken');
     const userId = currentUser.user_id;
+
     if (!selectedDestination || !startDate || !endDate || !username) {
       console.error('Please fill in all fields');
+      setErrorMessage('Please fill in all fields');
       return;
     }
+
     const reservationData = {
       destination_id: selectedDestination.id,
       start_date: startDate,
       end_date: endDate,
       user_id: userId,
     };
+
     console.log('Reservation Data:', reservationData);
+
     try {
+      setLoading(true);
+
       await axios.post(
         `http://127.0.0.1:4000/api/v1/users/${userId}/reservations`,
         reservationData,
@@ -79,16 +93,38 @@ const ReservationForm = () => {
           },
         },
       );
+
+      setSuccessMessage('Reservation successful!');
+
       setSelectedDestination(null);
       setStartDate('');
       setEndDate('');
       setUsername('');
+      setErrorMessage('');
+
+      setTimeout(() => {
+        setSuccessMessage('');
+        setShouldNavigate(true);
+        setLoading(false);
+      }, 3000);
     } catch (error) {
       console.error('Error submitting reservation:', error);
+      setErrorMessage('Error submitting reservation. Please try again.');
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (shouldNavigate) {
+      navigate('/reservations');
+    }
+  }, [shouldNavigate, navigate]);
+
   return (
     <div className="reservation-form-container">
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {isLoading && <LoadingSpinner />}
       <h2>Reserve a Resort</h2>
       <form
         onSubmit={(e) => {
@@ -116,7 +152,6 @@ const ReservationForm = () => {
                   {option.name}
                   {' '}
                   -
-                  {' '}
                   {option.city_name}
                 </option>
               ))}
@@ -130,6 +165,7 @@ const ReservationForm = () => {
               type="date"
               id="startDate"
               value={startDate}
+              min={new Date().toISOString().split('T')[0]}
               onChange={(e) => setStartDate(e.target.value)}
             />
           </label>
@@ -141,6 +177,7 @@ const ReservationForm = () => {
               type="date"
               id="endDate"
               value={endDate}
+              min={startDate || new Date().toISOString().split('T')[0]}
               onChange={(e) => setEndDate(e.target.value)}
             />
           </label>
@@ -157,9 +194,10 @@ const ReservationForm = () => {
             />
           </label>
         </div>
-        <button type="submit">Submit Reservation</button>
+        <button type="submit">Reserve</button>
       </form>
     </div>
   );
 };
+
 export default ReservationForm;
