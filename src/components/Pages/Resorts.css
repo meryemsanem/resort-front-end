@@ -124,6 +124,7 @@
   .details li:nth-child(even) {
     background-color: #cacaca;
   }
+
   #reserve-icon {
     font-size: 0.9rem;
     margin-inline: 1rem;
@@ -160,37 +161,12 @@
     padding-right: 1.5rem;
   }
 }
-/* @media screen and (max-width: 768px) {
-  #card-container {
-    flex-direction: column;
-    display: flex;
-  }
-
-  #detail-info {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  #detail-img {
-    width: 70%;
-  }
-
-  .details {
-    gap: 1.5rem;
-
-    #img-container {
-      flex-basis: 60%;
-      height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  } */
 
 @media screen and (max-width: 1079px) {
   #detail-container {
     width: 100%;
   }
+
   #card-container {
     flex-direction: column;
     margin-inline: 20px;
@@ -202,7 +178,7 @@
 
   #detail-img {
     width: 100%;
-    max-width: fit-content;
+    max-width: max-content;
   }
 
   #img-container {
@@ -218,7 +194,7 @@
     font-weight: 500;
     border-radius: 2px;
     width: 100%;
-    max-width: fit-content;
+    max-width: max-content;
     justify-content: center;
     align-items: center;
     display: flex;
