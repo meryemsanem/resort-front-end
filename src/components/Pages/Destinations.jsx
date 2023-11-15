@@ -33,7 +33,6 @@ const Destinations = () => {
     navigate(`/details/${id}`, { state: { destination: resort } });
   };
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,8 +48,6 @@ const Destinations = () => {
       }
     };
 
-
-  useEffect(() => {
     fetchData();
   }, []);
 
