@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SplashScreen.css';
 
 const SplashScreen = () => {
   const navigate = useNavigate();
@@ -13,10 +14,10 @@ const SplashScreen = () => {
     <div className="splash-screen">
       <h1>Welcome to Resort Vista</h1>
       <p>Explore the best resorts with us</p>
-      <button type="button" onClick={navigateToLogin}>
+      <button type="button" className="splashbutton" onClick={navigateToLogin}>
         Login
       </button>
-      <button type="button" onClick={navigateToSignup}>
+      <button type="button" className="splashbutton" onClick={navigateToSignup}>
         Sign Up
       </button>
     </div>

@@ -1,0 +1,49 @@
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-image: url('../Images/IMG_3792.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.splashbutton {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px;
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 25%;
+  border-radius: 28px;
+}
+
+.splashbutton:hover {
+  background-color: #0056b3;
+}
+
+button:last-child {
+  background-color: #fff;
+  color: #007bff;
+}
+
+button:last-child:hover {
+  background-color: #f5f5f5;
+}
