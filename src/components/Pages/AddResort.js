@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import LoadingSpinner from './LoadingSpinner';
+import './AddResort.css';
 
 const AddResort = () => {
   const [name, setName] = useState('');
@@ -54,8 +55,8 @@ const AddResort = () => {
 
   return (
     <div className="add-resort-container">
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
       {isLoading && <LoadingSpinner />}
       <h2>Add a Resort</h2>
       <form onSubmit={handleSubmit}>
@@ -66,15 +67,18 @@ const AddResort = () => {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Enter name (minimum 3 characters)"
             required
           />
         </label>
         <label htmlFor="description">
           Description:
-          <textarea
-            id="description"
+          <input
+            id="description-add"
+            type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter description (minimum 3 characters)"
             required
           />
         </label>
@@ -85,6 +89,7 @@ const AddResort = () => {
             id="imageURL"
             value={imageURL}
             onChange={(e) => setImageURL(e.target.value)}
+            placeholder="Enter image URL (minimum 3 characters)"
             required
           />
         </label>
@@ -95,6 +100,7 @@ const AddResort = () => {
             id="cityName"
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
+            placeholder="Enter city name (minimum 3 characters)"
             required
           />
         </label>
@@ -105,10 +111,13 @@ const AddResort = () => {
             id="fee"
             value={fee}
             onChange={(e) => setFee(e.target.value)}
+            placeholder="Enter fee"
             required
           />
         </label>
-        <button type="submit">Add Resort</button>
+        <button type="submit" className="submit-button">
+          Add Resort
+        </button>
       </form>
     </div>
   );
