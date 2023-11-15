@@ -10,6 +10,7 @@ import './Destinations.css';
 const Destinations = () => {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const swiperConfig = {
@@ -42,7 +43,7 @@ const Destinations = () => {
         const data = await response.json();
         setDestinations(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setErrorMessage('Error.');
       } finally {
         setLoading(false);
       }

@@ -29,6 +29,7 @@ const ReservationForm = () => {
         );
         setDestinationOptions(response.data);
       } catch (error) {
+        setErrorMessage('Error.');
       }
     };
     fetchResorts();
@@ -51,6 +52,7 @@ const ReservationForm = () => {
         );
         setUsername(response.data.name);
       } catch (error) {
+        setErrorMessage('Error.');
       }
     };
 
@@ -74,7 +76,6 @@ const ReservationForm = () => {
       end_date: endDate,
       user_id: userId,
     };
-
 
     try {
       setLoading(true);

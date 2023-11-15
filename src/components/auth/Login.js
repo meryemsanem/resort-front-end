@@ -41,7 +41,6 @@ const Login = () => {
         setError(true);
       }
     } catch (error) {
-      console.error('Login failed:', error);
       setErrorMessage('ERROR. Please try again.');
       setError(true);
     }
@@ -58,6 +57,7 @@ const Login = () => {
             value={newSession.user.email}
             onChange={handleChange}
             placeholder="Email"
+            autoComplete="email"
             required
           />
           <input
@@ -66,6 +66,7 @@ const Login = () => {
             value={newSession.user.password}
             onChange={handleChange}
             placeholder="Password"
+            autoComplete="current-password"
             required
           />
           <small className={`error-message ${error ? 'visible' : ''}`}>
@@ -77,7 +78,9 @@ const Login = () => {
             <Link to="/signup">Join us and start exploring!</Link>
           </span>
         </div>
-        <button type="submit" className="login-button">Log In</button>
+        <button type="submit" className="login-button">
+          Log In
+        </button>
       </form>
     </div>
   );

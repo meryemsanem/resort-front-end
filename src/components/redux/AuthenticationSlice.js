@@ -27,32 +27,34 @@ export const logIn = createAsyncThunk('user/login', async (newSession) => {
   sessionStorage.setItem('isAuthenticated', 'true');
   return response.data.status;
 });
+
 export const logOut = createAsyncThunk('user/logout', async () => {
   const authToken = sessionStorage.getItem('authToken');
 
-  const response = await axios.delete(LOGOUT_URL, {
-    headers: {
-      Authorization: authToken,
-    },
-  });
-  sessionStorage.removeItem('authToken');
-  sessionStorage.removeItem('isAuthenticated');
+  if (authToken) {
+    await axios.delete(LOGOUT_URL, {
+      headers: {
+        Authorization: authToken,
+      },
+    });
+
+    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('isAuthenticated');
+  }
+
+  return null;
 });
 
 export const fetchCurrentUser = createAsyncThunk(
   'authentication/fetchCurrentUser',
   async () => {
-    try {
-      const authToken = sessionStorage.getItem('authToken');
-      const response = await axios.get(`${CURRENT_USER_URL}`, {
-        headers: {
-          Authorization: authToken,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const authToken = sessionStorage.getItem('authToken');
+    const response = await axios.get(`${CURRENT_USER_URL}`, {
+      headers: {
+        Authorization: authToken,
+      },
+    });
+    return response.data;
   },
 );
 

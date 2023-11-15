@@ -9,6 +9,7 @@ const Reservations = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.authentication);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchReservationsData = async (userId, authToken) => {
@@ -50,6 +51,7 @@ const Reservations = () => {
 
         setReservations(reservationsWithFee);
       } catch (error) {
+        setErrorMessage('Error fetching reservations.');
       } finally {
         setLoading(false);
       }
@@ -63,12 +65,13 @@ const Reservations = () => {
         fetchReservationsData(userId, authToken);
       })
       .catch((error) => {
+        setErrorMessage('Error fetching user data.');
       });
   }, [dispatch, currentUser]);
-
   return (
     <div className="reservations-container">
       <h1 className="reservations-title">Reservations</h1>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       {isLoading && <LoadingSpinner />}
       {!isLoading && (
         <>

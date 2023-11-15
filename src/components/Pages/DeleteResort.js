@@ -11,9 +11,7 @@ const DeleteResort = () => {
       const data = await response.json();
       setDestinations(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
       setErrorMessage('Error fetching resorts. Please try again.');
-
     }
   };
 
@@ -37,9 +35,7 @@ const DeleteResort = () => {
         setErrorMessage('Error deleting resort. Please try again.');
       }
     } catch (error) {
-      console.error('Error deleting destination:', error);
       setErrorMessage('Error deleting resort. Please try again.');
-
     }
   };
 

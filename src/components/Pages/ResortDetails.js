@@ -23,11 +23,11 @@ const ResortDetails = () => {
         }
         const data = await response.json();
         setFee(data.fee);
-      } catch (error) {
       } finally {
         setLoading(false);
       }
     };
+
     if (destination) {
       fetchData();
     }

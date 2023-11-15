@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUp } from '../redux/AuthenticationSlice';
-import './Signup.css'; // Import the CSS file
+import './Signup.css';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -37,8 +37,7 @@ const Signup = () => {
           setError(true);
         }
       })
-      .catch((error) => {
-        console.error('Registration failed:', error);
+      .catch(() => {
         setErrorMessage('ERROR. Please try again.');
         setError(true);
       });
@@ -85,7 +84,6 @@ const Signup = () => {
           <button type="submit">Sign Up</button>
         </form>
       </div>
-
     </>
   );
 };
