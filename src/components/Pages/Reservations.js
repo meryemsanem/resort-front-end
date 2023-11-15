@@ -63,9 +63,6 @@ const Reservations = () => {
         const userId = currentUser.user_id;
 
         fetchReservationsData(userId, authToken);
-      })
-      .catch((error) => {
-        setErrorMessage('Error fetching user data.');
       });
   }, [dispatch, currentUser]);
   return (

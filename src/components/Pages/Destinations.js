@@ -64,6 +64,13 @@ const Destinations = () => {
         <h1 className="page-title">LATEST RESORTS</h1>
         <p className="page-title1">Please choose your favorite Resort</p>
         {isLoading && <LoadingSpinner />}
+        {errorMessage && (
+        <p>
+          Error:
+          {errorMessage}
+        </p>
+        )}
+        {' '}
         {!isLoading && destinations && destinations.length > 0 ? (
           <Swiper
             navigation
