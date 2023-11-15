@@ -16,7 +16,6 @@ const CURRENT_USER_URL = 'http://127.0.0.1:4000/api/v1/users/current_user';
 
 export const signUp = createAsyncThunk('user/signup', async (newUser) => {
   const response = await axios.post(`${SIGNUP_URL}`, newUser);
-  console.log('Sign up response:', response);
   sessionStorage.setItem('authToken', response.headers.authorization);
   sessionStorage.setItem('isAuthenticated', 'true');
   return response.data;
@@ -25,7 +24,6 @@ export const signUp = createAsyncThunk('user/signup', async (newUser) => {
 export const logIn = createAsyncThunk('user/login', async (newSession) => {
   const response = await axios.post(`${LOGIN_URL}`, newSession);
   sessionStorage.setItem('authToken', response.headers.authorization);
-  console.log('Logged in. Setting isAuthenticated to true');
   sessionStorage.setItem('isAuthenticated', 'true');
   return response.data.status;
 });
@@ -37,7 +35,6 @@ export const logOut = createAsyncThunk('user/logout', async () => {
       Authorization: authToken,
     },
   });
-  console.log('Logout response:', response);
   sessionStorage.removeItem('authToken');
   sessionStorage.removeItem('isAuthenticated');
 });
@@ -54,7 +51,6 @@ export const fetchCurrentUser = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.error('Error fetching current user:', error);
       throw error;
     }
   },
@@ -86,7 +82,6 @@ const authenticationSlice = createSlice({
         state.isLoading = false;
         state.isAuthenticated = true;
         state.user_id = action.payload.id;
-        console.log('User ID:', action.payload.id);
       });
   },
 });

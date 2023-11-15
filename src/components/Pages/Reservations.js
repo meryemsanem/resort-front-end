@@ -16,7 +16,6 @@ const Reservations = () => {
         setLoading(true);
 
         if (!authToken) {
-          console.error('No authToken present');
           return;
         }
 
@@ -30,7 +29,6 @@ const Reservations = () => {
         );
 
         if (!response.ok) {
-          console.error('Failed to fetch reservations:', response.statusText);
           return;
         }
 
@@ -52,7 +50,6 @@ const Reservations = () => {
 
         setReservations(reservationsWithFee);
       } catch (error) {
-        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -66,7 +63,6 @@ const Reservations = () => {
         fetchReservationsData(userId, authToken);
       })
       .catch((error) => {
-        console.error('Error fetching current user:', error);
       });
   }, [dispatch, currentUser]);
 

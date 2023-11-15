@@ -9,7 +9,6 @@ const DeleteResort = () => {
       const data = await response.json();
       setDestinations(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
     }
   };
 
@@ -28,7 +27,6 @@ const DeleteResort = () => {
       });
       setDestinations(destinations.filter((dest) => dest.id !== id));
     } catch (error) {
-      console.error('Error deleting destination:', error);
     }
   };
 
