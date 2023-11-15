@@ -46,7 +46,6 @@ const AddResort = () => {
       setCityName('');
       setFee('');
     } catch (error) {
-      console.error('Error adding resort:', error);
       setErrorMessage('Error adding resort. Please try again.');
     } finally {
       setLoading(false);

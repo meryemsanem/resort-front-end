@@ -23,12 +23,11 @@ const ResortDetails = () => {
         }
         const data = await response.json();
         setFee(data.fee);
-      } catch (error) {
-        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
     };
+
     if (destination) {
       fetchData();
     }

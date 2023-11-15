@@ -26,7 +26,6 @@ const App = () => {
 
   useEffect(() => {
     const isAuthenticatedFromStorage = sessionStorage.getItem('isAuthenticated') === 'true';
-    console.log('isAuthenticatedFromStorage:', isAuthenticatedFromStorage);
     dispatch(setIsAuthenticated(isAuthenticatedFromStorage));
 
     if (isAuthenticatedFromStorage) {

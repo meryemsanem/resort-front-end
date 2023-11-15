@@ -9,6 +9,7 @@ const Reservations = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.authentication);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchReservationsData = async (userId, authToken) => {
@@ -16,7 +17,6 @@ const Reservations = () => {
         setLoading(true);
 
         if (!authToken) {
-          console.error('No authToken present');
           return;
         }
 
@@ -30,7 +30,6 @@ const Reservations = () => {
         );
 
         if (!response.ok) {
-          console.error('Failed to fetch reservations:', response.statusText);
           return;
         }
 
@@ -52,7 +51,7 @@ const Reservations = () => {
 
         setReservations(reservationsWithFee);
       } catch (error) {
-        console.error(error);
+        setErrorMessage('Error fetching reservations.');
       } finally {
         setLoading(false);
       }
@@ -64,15 +63,12 @@ const Reservations = () => {
         const userId = currentUser.user_id;
 
         fetchReservationsData(userId, authToken);
-      })
-      .catch((error) => {
-        console.error('Error fetching current user:', error);
       });
   }, [dispatch, currentUser]);
-
   return (
     <div className="reservations-container">
       <h1 className="reservations-title">Reservations</h1>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       {isLoading && <LoadingSpinner />}
       {!isLoading && (
         <>

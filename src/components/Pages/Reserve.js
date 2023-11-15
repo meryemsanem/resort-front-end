@@ -29,7 +29,7 @@ const ReservationForm = () => {
         );
         setDestinationOptions(response.data);
       } catch (error) {
-        console.error('Error fetching resorts:', error);
+        setErrorMessage('Error.');
       }
     };
     fetchResorts();
@@ -52,7 +52,7 @@ const ReservationForm = () => {
         );
         setUsername(response.data.name);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        setErrorMessage('Error.');
       }
     };
 
@@ -66,7 +66,6 @@ const ReservationForm = () => {
     const userId = currentUser.user_id;
 
     if (!selectedDestination || !startDate || !endDate || !username) {
-      console.error('Please fill in all fields');
       setErrorMessage('Please fill in all fields');
       return;
     }
@@ -77,8 +76,6 @@ const ReservationForm = () => {
       end_date: endDate,
       user_id: userId,
     };
-
-    console.log('Reservation Data:', reservationData);
 
     try {
       setLoading(true);
@@ -108,7 +105,6 @@ const ReservationForm = () => {
         setLoading(false);
       }, 3000);
     } catch (error) {
-      console.error('Error submitting reservation:', error);
       setErrorMessage('Error submitting reservation. Please try again.');
       setLoading(false);
     }
