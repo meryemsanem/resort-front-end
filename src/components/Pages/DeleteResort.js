@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 const DeleteResort = () => {
   const [destinations, setDestinations] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const fetchData = async () => {
     try {
@@ -9,6 +11,9 @@ const DeleteResort = () => {
       const data = await response.json();
       setDestinations(data);
     } catch (error) {
+      console.error('Error fetching data:', error);
+      setErrorMessage('Error fetching resorts. Please try again.');
+
     }
   };
 
@@ -16,22 +21,33 @@ const DeleteResort = () => {
     fetchData();
   }, []);
 
-  if (!destinations || !Array.isArray(destinations)) {
-    return <p className="loading">Loading...</p>;
-  }
-
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://127.0.0.1:4000/api/v1/destinations/${id}`, {
-        method: 'DELETE',
-      });
-      setDestinations(destinations.filter((dest) => dest.id !== id));
+      const response = await fetch(
+        `http://127.0.0.1:4000/api/v1/destinations/${id}`,
+        {
+          method: 'DELETE',
+        },
+      );
+
+      if (response.ok) {
+        setDestinations(destinations.filter((dest) => dest.id !== id));
+        setSuccessMessage('Resort deleted successfully!');
+      } else {
+        setErrorMessage('Error deleting resort. Please try again.');
+      }
     } catch (error) {
+      console.error('Error deleting destination:', error);
+      setErrorMessage('Error deleting resort. Please try again.');
+
     }
   };
 
   return (
     <div className="container">
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
+
       <h2 className="sub_heading">Available Resorts</h2>
       <table className="table">
         <thead>

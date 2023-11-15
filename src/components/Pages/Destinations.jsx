@@ -108,7 +108,7 @@ const Destinations = () => {
           </Swiper>
         ) : null}
         {!isLoading && (!destinations || destinations.length === 0) && (
-          <p>No destinations available.</p>
+          <p className="no">No destinations available.</p>
         )}
       </div>
     </div>

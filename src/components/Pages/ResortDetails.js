@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import * as FcIcon from 'react-icons/fc';
 import * as AiIcon from 'react-icons/ai';
+import color from '../Images/color.png';
 import './Resorts.css';
 
 const ResortDetails = () => {
@@ -52,20 +53,26 @@ const ResortDetails = () => {
                 <h1 id="resort-name">{destination.name}</h1>
                 <p id="resort-description">{destination.description}</p>
               </div>
-              <div className="price-container">
-                <div className="details">
-                  <li>
-                    <p className="info-name">
-                      Fee:
-                      {fee}
-                    </p>
+              <div className="container-details">
+                <ul className="details">
+                  <li className="info-name">
+                    Fee:
+                    {fee}
                   </li>
-                  <li>
-                    <p className="info-name">
-                      Name:
-                      {destination.name}
-                    </p>
+
+                  <li className="info-name">
+                    Name:
+                    {destination.name}
                   </li>
+
+                  <li className="info-name">
+                    City:
+                    {destination.city_name}
+                  </li>
+                </ul>
+                <div className="color-image">
+                  <p className="discover">DISCOVER MORE MODELS </p>
+                  <img src={color} alt="color" className="color" />
                 </div>
               </div>
               <button
