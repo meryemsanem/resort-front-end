@@ -31,19 +31,17 @@ const Destinations = () => {
     navigate(`/details/${id}`, { state: { destination: resort } });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'http://127.0.0.1:4000/api/v1/destinations',
-        );
-        const data = await response.json();
-        setDestinations(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:4000/api/v1/destinations');
+      const data = await response.json();
+      setDestinations(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
