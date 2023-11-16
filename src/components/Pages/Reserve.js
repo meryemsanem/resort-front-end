@@ -25,7 +25,7 @@ const ReservationForm = () => {
     const fetchResorts = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:4000/api/v1/destinations',
+          'https://resort-vista.onrender.com/api/v1/destinations',
         );
         setDestinationOptions(response.data);
       } catch (error) {
@@ -45,7 +45,7 @@ const ReservationForm = () => {
       const authToken = sessionStorage.getItem('authToken');
       try {
         const response = await axios.get(
-          `http://127.0.0.1:4000/api/v1/users/${currentUser.user_id}`,
+          `https://resort-vista.onrender.com/api/v1/users/${currentUser.user_id}`,
           {
             headers: { Authorization: authToken },
           },
@@ -81,7 +81,7 @@ const ReservationForm = () => {
       setLoading(true);
 
       await axios.post(
-        `http://127.0.0.1:4000/api/v1/users/${userId}/reservations`,
+        `https://resort-vista.onrender.com/api/v1/users/${userId}/reservations`,
         reservationData,
         {
           headers: {

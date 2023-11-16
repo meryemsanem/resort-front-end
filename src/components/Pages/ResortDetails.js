@@ -16,7 +16,7 @@ const ResortDetails = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:4000/api/v1/destinations/${destination.id}`,
+          `https://resort-vista.onrender.com/api/v1/destinations/${destination.id}`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

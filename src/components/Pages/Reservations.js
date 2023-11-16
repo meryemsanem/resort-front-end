@@ -21,7 +21,7 @@ const Reservations = () => {
         }
 
         const response = await fetch(
-          `http://127.0.0.1:4000/api/v1/users/${userId}/reservations`,
+          `https://resort-vista.onrender.com/api/v1/users/${userId}/reservations`,
           {
             headers: {
               Authorization: authToken,
@@ -38,7 +38,7 @@ const Reservations = () => {
         const reservationsWithFee = await Promise.all(
           data.map(async (reservation) => {
             const feeResponse = await fetch(
-              `http://127.0.0.1:4000/api/v1/destinations/${reservation.destination_id}`,
+              `https://resort-vista.onrender.com/api/v1/destinations/${reservation.destination_id}`,
             );
             const feeData = await feeResponse.json();
 
