@@ -1,11 +1,14 @@
 .signup {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  width: 100%;
-  background-image: url('../Images/IMG_3792.jpg');
+  font-family: Arial, sans-serif;
+  background-image: url('../Images/sasha-kaunas-xEaAoizNFV8-unsplash.jpg');
   background-size: cover;
+  background-position: center;
+  width: 100%;
 }
 
 .signup-form {
