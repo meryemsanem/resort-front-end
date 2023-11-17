@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons';
 import * as FcIcon from 'react-icons/fc';
 import * as AiIcon from 'react-icons/ai';
 import color from '../Images/color.png';
-import './ResortDetail.css';
+import './ResortDetails.css';
 
 const ResortDetails = () => {
   const { state } = useLocation();
