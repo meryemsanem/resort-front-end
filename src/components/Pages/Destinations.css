@@ -1,17 +1,18 @@
 .page-container {
   max-width: 80%;
   width: 100%;
+  margin: 0 auto;
 }
 
 .container-destination {
   max-width: 100%;
-  margin: 0 auto;
+  margin: 50px 0;
 }
 
 .page-title,
 .page-title1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -100,4 +101,15 @@ img {
 .no {
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 767.9px) {
+  .page-title,
+  .page-title1 {
+    font-size: 100%;
+    margin-bottom: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 }

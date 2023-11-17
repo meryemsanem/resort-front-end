@@ -9,10 +9,10 @@ const initialState = {
   user_id: '',
 };
 
-const LOGIN_URL = 'http://127.0.0.1:4000/login';
-const LOGOUT_URL = 'http://127.0.0.1:4000/logout';
-const SIGNUP_URL = 'http://127.0.0.1:4000/signup';
-const CURRENT_USER_URL = 'http://127.0.0.1:4000/api/v1/users/current_user';
+const LOGIN_URL = 'https://resort-vista.onrender.com/login';
+const LOGOUT_URL = 'https://resort-vista.onrender.com/logout';
+const SIGNUP_URL = 'https://resort-vista.onrender.com/signup';
+const CURRENT_USER_URL = 'https://resort-vista.onrender.com/api/v1/users/current_user';
 
 export const signUp = createAsyncThunk('user/signup', async (newUser) => {
   const response = await axios.post(`${SIGNUP_URL}`, newUser);

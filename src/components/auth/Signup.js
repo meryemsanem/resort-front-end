@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUp } from '../redux/AuthenticationSlice';
+import LoadingSpinner from '../Pages/LoadingSpinner';
 import './Signup.css';
 
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [newUser, setNewUser] = useState({
     user: {
@@ -27,6 +29,7 @@ const Signup = () => {
     }));
   };
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     dispatch(signUp(newUser))
       .then((res) => {
@@ -45,6 +48,7 @@ const Signup = () => {
   return (
     <>
       <div className="signup">
+        {isLoading && <LoadingSpinner />}
         <form onSubmit={handleSubmit} className="signup-form">
           <h1>Welcome to Resort Vista!</h1>
           <div>
@@ -81,7 +85,9 @@ const Signup = () => {
               <Link to="/login">Log In and explore!</Link>
             </span>
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? 'Signing Up...' : 'Sign Up'}
+          </button>
         </form>
       </div>
     </>

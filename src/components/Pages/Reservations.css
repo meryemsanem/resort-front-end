@@ -1,81 +1,159 @@
-.reservations-container {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 80%;
-  margin: 20px auto;
+@media screen and (min-width: 768px) {
+  .reservations-container {
+    margin: 50px auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 78%;
+    background-color: whitesmoke;
+  }
+
+  .reservations-title {
+    font-size: 28px;
+    padding-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .card-container2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .card2 {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: url('../Images/sasha-kaunas-xEaAoizNFV8-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+  }
+
+  .card2 h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .card2 p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .no-reservations-message {
+    font-size: 18px;
+    padding-top: 20px;
+  }
+
+  .loading {
+    font-size: 20px;
+    color: red;
+    text-align: center;
+  }
+
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .loading-spinner img {
+    width: 100px;
+    height: 100px;
+    animation: spin 1s infinite linear;
+  }
+
+  .card-info {
+    background-color: rgb(249 249 249 / 80%);
+
+    /* width: -webkit-fill-available; */
+    width: 100%;
+  }
 }
 
-.reservations-title {
-  font-family: Pacifico, sans-serif;
-  font-size: 26px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #8fcd09;
-  text-transform: uppercase;
+@media screen and (max-width: 767.9px) {
+  .reservations-container {
+    margin: 40px auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 80%;
+  }
+
+  .card-info {
+    border: 2px solid whitesmoke;
+    background-color: rgb(249 249 249 / 80%);
+
+    /* width: -webkit-fill-available; */
+    width: 100%;
+  }
+
+  .reservations-title {
+    font-size: 26px;
+    padding-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .card-container2 {
+    display: grid;
+    gap: 20px;
+  }
+
+  .card2 {
+    font-size: 12px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: url('../Images/sasha-kaunas-xEaAoizNFV8-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+  }
+
+  .no-reservations-message {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+
+  .loading {
+    font-size: 20px;
+    color: red;
+    text-align: center;
+  }
+
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .loading-spinner img {
+    width: 100px;
+    height: 100px;
+    animation: spin 1s infinite linear;
+  }
+
+  #card-info p {
+    font-size: 15px;
+    color: #666;
+    margin: 7px;
+  }
+
+  #card-info h2 {
+    font-size: 18px;
+  }
 }
 
-.reservation-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.reservation-table td {
-  border: 1px solid #ddd;
-  padding: 15px;
-  text-align: left;
-  color: #444;
-}
-
-.reservation-table th {
-  text-align: center;
-  border: 1px solid #ddd;
-  padding: 15px;
-  color: #333;
-  background-color: #eee;
-  text-transform: uppercase;
-  font-size: 16px;
-  text-decoration: underline;
-}
-
-.destination-name {
-  font-weight: bold;
-}
-
-.no-reservations-message {
-  font-size: 16px;
-  font-style: italic;
-  text-align: center;
-  margin-top: 20px;
-  color: #555;
-}
-
-.loading {
-  font-size: 20px;
+.error-message {
   color: red;
-  text-align: center;
 }
 
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.loading-spinner img {
-  width: 100px;
-  height: 100px;
-  animation: spin 1s infinite linear;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+.success-message {
+  color: green;
 }

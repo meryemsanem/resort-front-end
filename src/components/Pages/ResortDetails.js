@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons';
 import * as FcIcon from 'react-icons/fc';
 import * as AiIcon from 'react-icons/ai';
 import color from '../Images/color.png';
-import './Resorts.css';
+import './ResortDetails.css';
 
 const ResortDetails = () => {
   const { state } = useLocation();
@@ -75,30 +75,33 @@ const ResortDetails = () => {
                   <img src={color} alt="color" className="color" />
                 </div>
               </div>
-              <button
-                id="reserver-btn"
-                type="button"
-                onClick={handleReserveClick}
-              >
-                Reserve
-                {' '}
-                <FcIcon.FcOvertime id="reserve-icon" />
-              </button>
+              <div className="reserve-btn">
+                <button
+                  type="button"
+                  className="back"
+                  id="reserver-btn"
+                  onClick={() => navigate('/resorts')}
+                >
+                  <AiIcon.AiFillCaretLeft />
+                  {' '}
+                  back
+                  {' '}
+                </button>
+                <button
+                  id="reserver-btn"
+                  type="button"
+                  onClick={handleReserveClick}
+                >
+                  Reserve
+                  {' '}
+                  <FcIcon.FcOvertime id="reserve-icon" />
+                </button>
+              </div>
             </div>
           </div>
         ) : (
           !loading && <p>Destination not available.</p>
         )}
-        <button
-          type="button"
-          className="back"
-          onClick={() => navigate('/resorts')}
-        >
-          <AiIcon.AiFillCaretLeft />
-          {' '}
-          back
-          {' '}
-        </button>
       </section>
     </IconContext.Provider>
   );

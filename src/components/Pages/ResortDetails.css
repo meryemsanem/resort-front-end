@@ -1,4 +1,4 @@
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 768px) {
   #detail-container {
     width: 100%;
   }
@@ -7,7 +7,7 @@
     width: 100%;
     display: flex;
     gap: 1rem;
-    justify-content: space-between;
+    align-content: center;
   }
 
   #detail-info img {
@@ -69,9 +69,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-right: 50px;
     width: 30%;
-    margin-top: 5rem;
+    margin-top: 3rem;
   }
 
   .detail {
@@ -103,6 +102,9 @@
     border: 0;
     border-radius: 20px;
     box-shadow: 0 9px #999;
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
 
   #reserver-btn:active {
@@ -160,31 +162,48 @@
   .back:hover {
     padding-right: 1.5rem;
   }
+
+  .reserve-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
-@media screen and (max-width: 1079px) {
+@media screen and (max-width: 767.9px) {
   #detail-container {
     width: 100%;
+    margin: 60px auto;
+    max-width: 80%;
   }
 
   #card-container {
     flex-direction: column;
-    margin-inline: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #detail-info {
     width: 100%;
+    max-width: 80%;
   }
 
-  #detail-img {
+  #detail-img img {
     width: 100%;
-    max-width: max-content;
   }
 
   #img-container {
-    display: flex;
+    width: 100%;
     justify-content: center;
-    align-items: center;
+    display: flex;
+  }
+
+  #img-container img {
+    width: 100%;
+    max-width: 80%;
+    height: auto;
   }
 
   .details {
@@ -195,12 +214,11 @@
     border-radius: 2px;
     width: 100%;
     max-width: max-content;
-    justify-content: center;
-    align-items: center;
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: auto;
+    padding-right: 28px;
+    margin: 0 auto;
   }
 
   .details li:nth-child(even) {
@@ -221,16 +239,21 @@
   }
 
   #detail-info img {
-    height: 150px;
-    object-fit: scale-down;
-    margin-left: auto;
-    display: flex;
-    justify-content: flex-end;
-    width: 38%;
+    display: none;
+  }
+
+  #detail-info h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  #detail-info p {
+    text-align: center;
   }
 
   #reserver-btn {
-    padding: 0.9rem 2.5rem;
+    padding: 0.5rem 0.5rem;
     font-size: 1rem;
     text-transform: uppercase;
     color: #fff;
@@ -238,8 +261,6 @@
     outline: 0;
     border: 0;
     border-radius: 20px;
-    box-shadow: 0 9px #999;
-    margin: 15px;
   }
 
   #reserver-btn:active {
@@ -252,22 +273,27 @@
     background-color: #303030;
   }
 
-  .back {
-    padding: 0.5rem 1rem;
-    background-color: #97bf11;
-    border: 0;
-    outline: 0;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    color: #fff;
-  }
-
   .back:hover {
     padding-right: 1.5rem;
   }
 
   .discover {
-    font-size: 12px;
-    margin-top: 20px;
+    display: none;
+  }
+
+  .reserve-btn {
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    margin-top: 50px;
+    width: 100%;
+  }
+
+  .container-details {
+    display: flex;
+    justify-content: center;
+    margin: 2px auto;
+    text-align: center;
+    padding-right: 2px;
   }
 }
