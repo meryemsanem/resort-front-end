@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './DeleteResort.css'
 
 const DeleteResort = () => {
   const [destinations, setDestinations] = useState([]);
@@ -40,7 +41,7 @@ const DeleteResort = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-delete">
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
 
