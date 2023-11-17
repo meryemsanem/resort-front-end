@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logIn, fetchCurrentUser } from '../redux/AuthenticationSlice';
+import LoadingSpinner from '../Pages/LoadingSpinner';
 import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [newSession, setNewSession] = useState({
     user: {
@@ -29,12 +32,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await dispatch(logIn(newSession));
 
       if (res.payload) {
         dispatch(fetchCurrentUser());
+        setSuccessMessage('Log in successful! Please wait...');
         navigate('/resorts');
       } else {
         setErrorMessage('Incorrect email or password. Please try again.');
@@ -43,11 +48,15 @@ const Login = () => {
     } catch (error) {
       setErrorMessage('ERROR. Please try again.');
       setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login-container">
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {isLoading && <LoadingSpinner />}
       <form onSubmit={handleSubmit} className="login-form">
         <h1>Welcome to Resort Vista!</h1>
         <div>
@@ -78,8 +87,8 @@ const Login = () => {
             <Link to="/signup">Join us and start exploring!</Link>
           </span>
         </div>
-        <button type="submit" className="login-button">
-          Log In
+        <button type="submit" className="login-button" disabled={isLoading}>
+          {isLoading ? 'Logging In...' : 'Log In'}
         </button>
       </form>
     </div>
