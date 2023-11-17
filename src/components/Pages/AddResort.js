@@ -30,7 +30,7 @@ const AddResort = () => {
       const authToken = sessionStorage.getItem('authToken');
 
       await axios.post(
-        'https://resort-vista.onrender.com/api/v1/destinations',
+        'http://127.0.0.1:4000/api/v1/destinations',
         resortData,
         {
           headers: {
