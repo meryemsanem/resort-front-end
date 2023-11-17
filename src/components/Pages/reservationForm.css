@@ -8,6 +8,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f4f4f4;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 h2 {
