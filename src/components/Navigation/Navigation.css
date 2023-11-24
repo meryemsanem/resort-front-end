@@ -6,6 +6,7 @@
     flex-direction: column;
     height: 100vh;
     transition: all 0.3s ease;
+    border-right: 2px solid #d6d6d6;
   }
 
   .footer {
