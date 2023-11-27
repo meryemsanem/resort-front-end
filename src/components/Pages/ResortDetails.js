@@ -85,7 +85,7 @@ const ResortDetails = () => {
                   {' '}
                   <FcIcon.FcOvertime id="reserve-icon" />
                 </button>
-                      <button
+                <button
                   type="button"
                   className="back"
                   id="reserver-btn"
