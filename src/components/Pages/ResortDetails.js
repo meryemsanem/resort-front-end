@@ -77,6 +77,15 @@ const ResortDetails = () => {
               </div>
               <div className="reserve-btn">
                 <button
+                  id="reserver-btn"
+                  type="button"
+                  onClick={handleReserveClick}
+                >
+                  Reserve
+                  {' '}
+                  <FcIcon.FcOvertime id="reserve-icon" />
+                </button>
+                      <button
                   type="button"
                   className="back"
                   id="reserver-btn"
@@ -86,15 +95,6 @@ const ResortDetails = () => {
                   {' '}
                   back
                   {' '}
-                </button>
-                <button
-                  id="reserver-btn"
-                  type="button"
-                  onClick={handleReserveClick}
-                >
-                  Reserve
-                  {' '}
-                  <FcIcon.FcOvertime id="reserve-icon" />
                 </button>
               </div>
             </div>
